@@ -29,7 +29,9 @@ def emotion_detector(text_to_analyze):
         max_emotion = max(emotion_result.values())
         for k, v in emotion_result.items():
             if v == max_emotion:
-                emotion_result["dominate_emotion"] = k
+                emotion_result["dominant_emotion"] = k
                 break 
     
+    if response.status_code == 400:
+        return {"anger": None, "disgust": None, "fear": None, "joy": None, "sadness": None, "dominant_emotion": None}
     return emotion_result
